@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Cart from "../Cart"; // Importing Cart component to display cart items
+import React from "react";
+import { useCart } from "../../context/CartContext";
 
 // Array of school stationery products with images
 const products = [
@@ -26,11 +26,7 @@ const products = [
 ];
 
 const SchoolStationery = () => {
-  const [cart, setCart] = useState([]); // State to store cart items
-
-  const addToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]); // Add product to the cart
-  };
+  const { addToCart } = useCart(); // Use the addToCart function from the CartContext
 
   return (
     <div className="school-stationery py-10 bg-gray-50">
@@ -57,7 +53,6 @@ const SchoolStationery = () => {
           </div>
         ))}
       </div>
-      <Cart cart={cart} /> {/* Display the cart */}
     </div>
   );
 };

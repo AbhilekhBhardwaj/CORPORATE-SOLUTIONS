@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import Cart from "../Cart"; // Importing Cart component to display cart items
+import React from "react";
+import { useCart } from "../../context/CartContext";
 
-// Array of products with images
+// Array of writing instrument products with images
 const products = [
   {
     id: 1,
     name: "Use & Throw Pen (Packet)",
-    image: "/assets/products/use-throw-pen.jpg", // Update with actual image paths
+    image: "/assets/products/use-throw-pen.jpg",
   },
   {
     id: 2,
@@ -66,11 +66,7 @@ const products = [
 ];
 
 const WritingInstrument = () => {
-  const [cart, setCart] = useState([]); // State to store cart items
-
-  const addToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]); // Add product to the cart
-  };
+  const { addToCart } = useCart(); // Use the addToCart function from the CartContext
 
   return (
     <div className="writing-instrument py-10 bg-gray-50">
@@ -97,10 +93,8 @@ const WritingInstrument = () => {
           </div>
         ))}
       </div>
-      <Cart cart={cart} /> {/* Display the cart */}
     </div>
   );
 };
 
 export default WritingInstrument;
-
